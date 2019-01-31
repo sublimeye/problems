@@ -1,0 +1,14 @@
+{
+  "name": "coding-interview",
+  "version": "1.0.0",
+  "description": "Personal Notes and Progress on Coding-Interview preparation",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "interview"
+  ],
+  "author": "Roman Morozov",
+  "license": "ISC"
+}
