@@ -4,11 +4,20 @@
   "description": "Personal Notes and Progress on Coding-Interview preparation",
   "main": "index.js",
   "scripts": {
+    "dev": "parcel -p 3000 index.html",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
     "interview"
   ],
   "author": "Roman Morozov",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "ceylon": "^0.9.1",
+    "parcel-bundler": "^1.11.0",
+    "prettier": "^1.16.3",
+    "tslint": "^5.12.1",
+    "tslint-config-prettier": "^1.17.0",
+    "typescript": "^3.3.1"
+  }
 }
