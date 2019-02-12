@@ -14,6 +14,7 @@
   "license": "ISC",
   "devDependencies": {
     "ceylon": "^0.9.1",
+    "nodemon": "^1.18.9",
     "parcel-bundler": "^1.11.0",
     "prettier": "^1.16.3",
     "tslint": "^5.12.1",
