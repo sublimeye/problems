@@ -6,6 +6,7 @@
   ],
   "jsRules": {},
   "rules": {
+    "jsdoc-format": false,
     "no-console": false,
     "max-classes-per-file": false,
     "curly": [true, "ignore-same-line"],

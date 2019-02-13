@@ -31,8 +31,7 @@
     "noFallthroughCasesInSwitch": true,
     "typeRoots": [
       "node_modules/@types",
-      "node_modules/",
-      "@types"
+      "node_modules/"
     ],
     "noUnusedLocals": true,
     "importHelpers": true,
