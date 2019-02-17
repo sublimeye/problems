@@ -1,5 +1,3 @@
-import expect from 'ceylon'
-
 function removeAll(s: string, removeChars: string): string {
   let result = ''
   let rregeex = new RegExp(`[${removeChars}]`)
@@ -66,7 +64,8 @@ function removeAllArray(source: string[], chars: string[]): string[] {
   return source
 }
 
-expect(removeAll('hello from somewhere', 'hs')).toEqual('ello from omewere')
-expect(removeAllSame('hello from somewhere', 'hs')).toEqual('ello from omewere')
-expect(removeAllArray(['o', 'b', 'c', 'd'], ['b'])).toEqual(['o', 'c', 'd'])
-console.log('remove all')
+test('remove all', () => {
+  expect(removeAll('hello from somewhere', 'hs')).toEqual('ello from omewere')
+  expect(removeAllSame('hello from somewhere', 'hs')).toEqual('ello from omewere')
+  expect(removeAllArray(['o', 'b', 'c', 'd'], ['b'])).toEqual(['o', 'c', 'd'])
+})

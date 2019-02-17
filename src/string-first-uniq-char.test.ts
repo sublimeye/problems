@@ -1,5 +1,3 @@
-import expect from 'ceylon'
-
 function firstUniqCharacter(s: string): string | undefined {
   const count: ({[key: string]: number}) = {}
   for (let ch of s) {
@@ -30,9 +28,9 @@ function firstUniqCharacterBool(s: string): string | undefined {
   return
 }
 
-
-expect(firstUniqCharacter('abrab')).toEqual('r')
-expect(firstUniqCharacter('firstUniqCharacter')).toEqual('f')
-expect(firstUniqCharacterBool('abrab')).toEqual('r')
-expect(firstUniqCharacterBool('firstUniqCharacter')).toEqual('f')
-console.log('string: first uniq')
+test('first uniq', () => {
+  expect(firstUniqCharacter('abrab')).toEqual('r')
+  expect(firstUniqCharacter('firstUniqCharacter')).toEqual('f')
+  expect(firstUniqCharacterBool('abrab')).toEqual('r')
+  expect(firstUniqCharacterBool('firstUniqCharacter')).toEqual('f')
+})

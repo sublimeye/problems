@@ -1,5 +1,5 @@
 import Graph from './graph'
-import Queue from './queue'
+import QueueTest from './queue'
 
 export class BreadthFirstPaths {
   private marked: boolean[] = []
@@ -28,7 +28,7 @@ export class BreadthFirstPaths {
   }
 
   private bfs(G: Graph, s: number) {
-    const q = new Queue<number>()
+    const q = new QueueTest<number>()
     let dist = 0
     q.enqueue(s)
 
