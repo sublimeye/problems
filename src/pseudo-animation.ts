@@ -9,6 +9,17 @@ function callfunc(fn: (width: number) => void, args: number[], delay: number) {
   }
 }
 
+const sizesp = sizes.map(n => () =>
+  new Promise(resolve => {
+    setTimeout(() => {
+      change(n)
+      resolve()
+    }, n)
+  }),
+)
+
+sizesp.reduce((promise, next) => promise.then(next), Promise.resolve({}))
+
 function change(width: number) {
   console.log('width', width)
 }
