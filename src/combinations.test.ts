@@ -21,7 +21,7 @@ function combinations2(s: string) {
 
 function combinationOfString(s: string, k: number): string[] {
   if (k === 0) return []
-  /// ...
+  return []
 }
 
 test('combinations', () => {
