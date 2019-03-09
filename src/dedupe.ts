@@ -1,4 +1,4 @@
-import expect from 'ceylon'
+// import expect from 'ceylon'
 
 console.log('dedupe')
 
@@ -18,4 +18,4 @@ export function dedupe(input: number[]): number[] {
 }
 
 const s1 = [3, 1, 5, 2, 3, 5, 1, 7]
-expect(dedupe(s1)).toEqual([3, 1, 5, 2, 7])
+// expect(dedupe(s1)).toEqual([3, 1, 5, 2, 7])

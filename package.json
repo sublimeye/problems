@@ -14,15 +14,14 @@
   "author": "Roman Morozov",
   "license": "ISC",
   "devDependencies": {
-    "@types/jest": "^24.0.5",
-    "ceylon": "^0.9.1",
-    "jest": "^24.1.0",
-    "nodemon": "^1.18.9",
-    "parcel-bundler": "^1.11.0",
-    "prettier": "^1.16.3",
+    "@types/jest": "^24.0.9",
+    "jest": "^24.3.1",
+    "nodemon": "^1.18.10",
+    "parcel-bundler": "^1.12.0",
+    "prettier": "^1.16.4",
     "ts-jest": "^24.0.0",
-    "tslint": "^5.12.1",
-    "tslint-config-prettier": "^1.17.0",
-    "typescript": "^3.3.1"
+    "tslint": "^5.13.1",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.3.3333"
   }
 }
