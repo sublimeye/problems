@@ -29,7 +29,6 @@ function search2(
   end: number,
 ): number | undefined {
   const range = end - start
-  console.log(range, start, end, array[start], array[end])
   if (range < 0) return void 0
   if (array[start] > array[end]) return void 0
   const mid = Math.floor(range / 2 + start)
