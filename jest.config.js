@@ -7,6 +7,8 @@ module.exports = {
   },
   testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$',
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
+  testPathIgnorePatterns: ['/lib/', '/node_modules/'],
+  collectCoverage: false,
   globals: {
     'ts-jest': {
       diagnostics: false,
@@ -18,7 +20,7 @@ module.exports = {
       },
       experimentalDecorators: true,
       jsx: 'react',
-      outDir: 'artifacts',
+      outDir: 'lib',
       allowSyntheticDefaultImports: true,
       preserveConstEnums: true,
       typeRoots: ['node_modules/@types'],

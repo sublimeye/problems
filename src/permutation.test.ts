@@ -31,7 +31,6 @@
 
 function permutation(str: string): void {
   const a = perm('', str, [])
-  console.log(a)
 }
 
 function perm(prefix: string, s: string, accum: string[]): string[] {

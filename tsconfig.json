@@ -19,7 +19,7 @@
     },
     "experimentalDecorators": true,
     "jsx": "react",
-    "outDir": "artifacts",
+    "outDir": "lib",
     "allowSyntheticDefaultImports": true,
     "preserveConstEnums": true,
     "noImplicitAny": true,
@@ -52,6 +52,8 @@
     "android",
     "ios",
     "build",
+    "dist",
+    "lib",
     "node_modules"
   ],
   "compileOnSave": false
