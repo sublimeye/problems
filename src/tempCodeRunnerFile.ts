@@ -1,1 +1,1 @@
-        result[i] === first
+a
