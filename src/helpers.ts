@@ -11,6 +11,18 @@ export function swap(data: number[], i: number, j: number): void {
   data[j] = temp
 }
 
+export function swap2d(
+  data: number[][],
+  r1: number,
+  c1: number,
+  r2: number,
+  c2: number,
+): void {
+  const temp = data[r1][c1]
+  data[r1][c1] = data[r2][c2]
+  data[r2][c2] = temp
+}
+
 /**
  * Knuth shuffle algorithm
  */

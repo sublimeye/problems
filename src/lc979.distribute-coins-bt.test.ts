@@ -4,17 +4,19 @@
  *     this.val = val;
  *     this.left = this.right = null;
  * }
- *
+ * @url https://leetcode.com/problems/distribute-coins-in-binary-tree
  */
 /**
  * @param {TreeNode} root
  * @return {number}
  */
 
+type NodeLink = TreeNode | null
+
 interface TreeNode {
   val: number
-  left: TreeNode | null
-  right: TreeNode | null
+  left: NodeLink
+  right: NodeLink
 }
 
 class TreeNode implements TreeNode {
@@ -25,19 +27,26 @@ class TreeNode implements TreeNode {
   }
 }
 
-var distributeCoins = function(root: TreeNode | null): number {
-  return 6
+type Counter = { value: number }
+var distributeCoins = function(root: NodeLink): number {
+  const counter: Counter = { value: 0 }
+  balance(root, counter)
+  return counter.value
 }
 
-function buildTree(data: number[]): TreeNode | null {
+function balance(node: NodeLink, counter: Counter): number {
+  if (node === null) return 0
+  const left = balance(node.left, counter)
+  const right = balance(node.right, counter)
+  counter.value += Math.abs(left) + Math.abs(right)
+  return node.val - 1 + left + right
+}
+
+function buildTree(data: number[]): NodeLink {
   return insertLevel(data, null, 0)
 }
 
-function insertLevel(
-  data: number[],
-  node: TreeNode | null,
-  i: number,
-): TreeNode | null {
+function insertLevel(data: number[], node: NodeLink, i: number): NodeLink {
   if (i < data.length) {
     const temp = new TreeNode(data[i])
     node = temp
@@ -47,7 +56,9 @@ function insertLevel(
   return node
 }
 
-test('distribute coins', () => {
-  const tree1 = buildTree([3, 0, 0])
-  expect(distributeCoins(tree1)).toEqual(6)
+describe.only('distribute coins', () => {
+  test('distribute coins', () => {
+    const tree1 = buildTree([3, 0, 0])
+    expect(distributeCoins(tree1)).toEqual(2)
+  })
 })
