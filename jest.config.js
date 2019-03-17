@@ -1,7 +1,6 @@
 module.exports = {
   roots: ['<rootDir>/src'],
   testEnvironment: 'node',
-  notification: true,
   transform: {
     '^.+\\.tsx?$': 'ts-jest',
   },
