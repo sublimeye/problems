@@ -27,11 +27,58 @@ var rotate = function(m: number[][]): number[][] {
   return m
 }
 
+/**
+ * Rotate matrix - clockwise
+ * swap (rows)
+ * transpose matrix
+ */
 var rotateRight2 = function(m: number[][] = []): number[][] {
   m.reverse()
   for (let i = 0; i < m.length; ++i) {
     for (let j = i + 1; j < m.length; ++j) {
       swap2d(m, i, j, j, i)
+    }
+  }
+  return m
+}
+
+/**
+ * Rotate matrix - anti-clockwise
+ */
+var rotateLeft = function(m: number[][] = []): number[][] {
+  transpose(m)
+  swapRows(m)
+  return m
+}
+
+/**
+ * Rotate matrix - clockwise, using transposition
+ */
+var rotateRightT = function(m: number[][] = []): number[][] {
+  transpose(m)
+  swapColumns(m)
+  return m
+}
+
+function transpose(m: number[][]): number[][] {
+  const N = m.length
+  for (let i = 0; i < N; ++i) {
+    for (let j = 0; j < i; ++j) {
+      swap2d(m, i, j, j, i)
+    }
+  }
+  return m
+}
+
+function swapRows(m: number[][] = []): number[][] {
+  return m.reverse()
+}
+
+function swapColumns(m: number[][] = []): number[][] {
+  const N = m.length
+  for (let i = 0; i < N; ++i) {
+    for (let j = 0; j < N / 2; ++j) {
+      swap2d(m, i, j, i, N - 1 - j)
     }
   }
   return m
@@ -80,9 +127,21 @@ describe('rotate matrix', () => {
     expect(rotate(input)).toEqual(output)
   })
 
-  test('rotate 3x3', () => {
+  test('rotate 3x3 clockwise', () => {
     const input = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
     const output = [[7, 4, 1], [8, 5, 2], [9, 6, 3]]
     expect(rotateRight2(input)).toEqual(output)
+  })
+
+  test('rotate 3x3 clockwise transpose', () => {
+    const input = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+    const output = [[7, 4, 1], [8, 5, 2], [9, 6, 3]]
+    expect(rotateRightT(input)).toEqual(output)
+  })
+
+  test('rotate 3x3 anti-clockwise (left)', () => {
+    const input = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+    const output = [[3, 6, 9], [2, 5, 8], [1, 4, 7]]
+    expect(rotateLeft(input)).toEqual(output)
   })
 })
