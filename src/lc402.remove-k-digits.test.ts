@@ -22,11 +22,7 @@ var removeKdigits = function(num: string, k: number): string {
   if (k > 0) stack = stack.slice(0, -k)
 
   // clear zeroes
-  let zeroes = 0
-  i = 0
-  while (stack[i++] === '0') zeroes++
-  if (zeroes === stack.length) return '0'
-  if (zeroes) stack = stack.slice(zeroes)
+  while (stack.length > 1 && stack[0] === '0') stack.shift()
 
   return stack.join('')
 }
