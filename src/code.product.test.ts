@@ -1,5 +1,8 @@
 // Taken from https://stackoverflow.com/a/33276078
 
+const f = (a, b) => [].concat(...a.map(d => b.map(e => [].concat(d, e))))
+const cartesian = (a, b, ...c) => (b ? cartesian(f(a, b), ...c) : a)
+
 function product(lists: number[][]) {
   const result: number[][] = []
   const total = lists.reduce((r, { length }) => r * length, 1)
@@ -52,7 +55,22 @@ describe.only('product', () => {
       [2, 5, 9],
       [2, 6, 9],
     ])
+    expect(cartesian([1, 2], [5, 6], [9])).toEqual([
+      [1, 5, 9],
+      [1, 6, 9],
+      [2, 5, 9],
+      [2, 6, 9],
+    ])
     expect(product([])).toEqual([[]])
+  })
+
+  test('cartesian short', () => {
+    expect(cartesian([1, 2], [5, 6], [9])).toEqual([
+      [1, 5, 9],
+      [1, 6, 9],
+      [2, 5, 9],
+      [2, 6, 9],
+    ])
   })
 
   test('should build product as object', () => {
