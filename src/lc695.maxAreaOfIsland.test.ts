@@ -9,7 +9,7 @@ var maxAreaOfIsland = function(grid: number[][]): number {
   // lecutre 4.2
 }
 
-test('find largest k number', () => {
+test.skip('find largest k number', () => {
   const island1 = [
     [0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0],

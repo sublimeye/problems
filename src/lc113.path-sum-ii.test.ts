@@ -30,3 +30,5 @@ function traverse(root, sum, c, path) {
   traverse(root.right, sum, c, path)
   path.pop()
 }
+
+test.skip('path', () => {})
