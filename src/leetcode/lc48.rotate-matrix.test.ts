@@ -1,4 +1,4 @@
-import { swap2d } from './helpers'
+import { swap2d } from '../helpers'
 /**
  * @url https://leetcode.com/problems/rotate-image/
  * @param {number[][]} matrix

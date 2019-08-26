@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Identical DOM Node</title>
+</head>
+<body>
+<div class="dom1">
+  <div accesskey="1"></div>
+  <div accesskey="2"></div>
+  <div accesskey="3">
+    <div accesskey="4">
+      <div accesskey="5"></div>
+    </div>
+    <div accesskey="6">
+      <div accesskey="7" id="node1">this is the node</div>
+      <div accesskey="8"></div>
+    </div>
+  </div>
+  <div accesskey="9">
+    <div accesskey="10"></div>
+  </div>
+</div>
+  <div class="dom2"><div></div><div></div><div><div><div></div></div><div><div>this is the other node</div><div></div></div></div><div><div></div></div></div>
+
+<script>
+  const dom1 = document.querySelector('.dom1')
+  const dom2 = document.querySelector('.dom2')
+  const target = dom1.querySelector('#node1')
+
+  // Option 1
+  // build index dom1
+  // return element from tree when index matches
+
+  // Option 11
+  // traverse the tree and find index of target
+  // traverse another tree and find target by index
+  function findNodeIndex(root, target, index = 0) {
+    if (!root) return null
+    if (root === target) { return index }
+    index++
+    for (const child of root.children) {
+      const found = findNodeIndex(child, target, index++)
+      if (found) return found
+    }
+  }
+
+  function findNodeByIndex(root, targetIndex, index = 0) {
+    if (!root) return null
+    if (index === targetIndex) { return root }
+    index++
+    for (const child of root.children) {
+      const found = findNodeByIndex(child, targetIndex, index++)
+      if (found) return found
+    }
+  }
+
+  const foundIndex = findNodeIndex(dom1, target)
+  const foundNode = findNodeByIndex(dom2, foundIndex)
+  console.log(`foundIndex`, foundIndex, `foundNode`, foundNode)
+  // console.log(findNodeIndex(dom1, target))
+  // console.log(findNodeIndex(dom1, target))
+
+  // Option 2
+  function flattenTree(root, tree = []) {
+    if (!root) return tree
+    tree.push(root)
+    for (const child of root.children) {
+      flattenTree(child, tree)
+    }
+    return tree
+  }
+  const dom1tree = flattenTree(dom1)
+  const dom2tree = flattenTree(dom2)
+  const dom1treeIndex = dom1tree.indexOf(target)
+  const dom2found = dom2tree[dom1treeIndex]
+  console.log(`dom1.normalize()`, dom1.normalize())
+
+  // function findNodeIndex() {}
+  // function findNodeAtTreeIndex(root, index) {}
+  // console.log(traverse(dom2, target))
+</script>
+<script src="http://localhost:35729/livereload.js?snipver=1"></script>
+</body>
+</html>

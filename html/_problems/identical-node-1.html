@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Identical DOM Node</title>
+</head>
+<body>
+
+<div class="tree1">
+  <ul>
+    <li><span>1</span></li>
+    <li><span>2</span></li>
+    <li><span class="next">3</span></li>
+    <li><span>4</span></li>
+    <li><span>5</span></li>
+  </ul>
+</div>
+
+<div class="tree2">
+  <ul>
+    <li><span>100</span></li>
+    <li><span>200</span></li>
+    <li><span class="next">3</span></li>
+    <li><span>400</span></li>
+    <li><span>500</span></li>
+  </ul>
+</div>
+
+
+<script>
+  function traverse(root, target) {
+    if (!root) return
+    if (root.isEqualNode(target)) return root
+
+    for (let child of root.childNodes) {
+      const found = traverse(child, target)
+      if (found) return found
+    }
+  }
+
+  const tree1 = document.querySelector('.tree1')
+  const tree2 = document.querySelector('.tree2')
+  const target = tree1.querySelector('.next')
+  console.log(traverse(tree2, target))
+</script>
+<script src="http://localhost:35729/livereload.js?snipver=1"></script>
+</body>
+</html>

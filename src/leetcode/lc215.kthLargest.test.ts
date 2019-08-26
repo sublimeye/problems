@@ -1,4 +1,4 @@
-import { shuffle, swap } from './helpers'
+import { shuffle, swap } from '../helpers'
 /**
  * @param {number[]} nums
  * @param {number} k
