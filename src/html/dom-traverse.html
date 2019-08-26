@@ -1,0 +1,54 @@
+<html>
+
+<head>
+    <title>Test</title>
+</head>
+
+<body>
+    <div class="tree">
+        <ul>
+            <li><span>Hello 1</span><span>Hello 2</span></li>
+            <li><span>Hello 1</span><span>Hello 2</span></li>
+            <li><span>Hello 1</span><span>Hello 2</span></li>
+            <li><span>Hello 1</span><span>Hello 2</span></li>
+            <li><span>Hello 1</span><span>Hello 2</span></li>
+        </ul>
+    </div>
+
+    <script>
+        const dom = document.querySelector('.tree')
+        function bfsPrint(root) {
+            if (!root) return
+            const queue = []
+            queue.push(root)
+
+            while (queue.length) {
+                const node = queue.shift()
+                console.log(node)
+                for (const child of node.children) {
+                    queue.push(child)
+                }
+            }
+        }
+
+        console.log('bfs print')
+        bfsPrint(dom)
+
+        function dfsPrint(root) {
+            if (!root) return
+            console.log(root)
+            for (const child of root.children) dfsPrint(child)
+        }
+
+        console.log('dfs print')
+        dfsPrint(dom)
+
+        const treeWalker = document.createTreeWalker(dom, NodeFilter.SHOW_ELEMENT)
+
+        console.log('treeWalker')
+        console.log(treeWalker.currentNode)
+        while (treeWalker.nextNode()) console.log(treeWalker.currentNode)
+    </script>
+</body>
+
+</html>
