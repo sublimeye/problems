@@ -1,4 +1,4 @@
-import { swap, shuffle } from './helpers'
+import { swap, shuffle } from '../helpers'
 /**
  * Knuth shuffle algorithm
  */
