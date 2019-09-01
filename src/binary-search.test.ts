@@ -39,6 +39,18 @@ function search2(
   }
 }
 
+function binarySearch3(array: number[], target: number): number {
+  let lo = 0
+  let hi = array.length - 1
+  while (lo <= hi) {
+    const mid = lo + ~~((hi - lo) / 2)
+    if (target < array[mid]) hi = mid - 1
+    else if (target > array[mid]) lo = mid + 1
+    else return mid
+  }
+  return -1
+}
+
 function binaryIndexOf(
   array: number[],
   target: number,
@@ -66,4 +78,11 @@ test('binary search 2', () => {
   expect(binarySearch2([1], 1)).toEqual(0)
   expect(binarySearch2([1, 2, 3], 2)).toEqual(1)
   expect(binarySearch2([1], 5)).toBeUndefined()
+})
+
+test('binary search 3', () => {
+  expect(binarySearch3([1, 3, 5, 10, 23, 54], 10)).toEqual(3)
+  expect(binarySearch3([1], 1)).toEqual(0)
+  expect(binarySearch3([1, 2, 3], 2)).toEqual(1)
+  expect(binarySearch3([1], 5)).toBe(-1)
 })
