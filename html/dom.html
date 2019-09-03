@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Identical DOM Node</title>
+</head>
+<body>
+
+<div id="root">
+  <div>
+    <div>A</div>
+  </div>
+  <div>
+    <div>B</div>
+  </div>
+  <div>
+    <div>C</div>
+  </div>
+  <div>
+    <div>
+      <div>
+        <div>
+          <div>
+            <div>
+              <div class="one">
+                <div>D</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div  class="one">x</div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+</div>
+
+<div id="root2">
+    <div class="outer"><span class="inner-2">1</span></div>
+    <div class="outer"><span class="inner-2">2</span></div>
+    <div class="outer"><span class="inner-2"><b><em>Inside</em></b></span></div>
+</div>
+<script>
+  function main() {
+    const root = document.getElementById('root')
+    const total = totalNodes(root)
+
+    const max = maxDepth(root)
+    const leafs = countLeafs(root)
+    const allDivs = getElementsByTagName(root, 'div')
+
+    const outer = document.createElement('div')
+    outer.appendChild(root)
+    const divs = outer.getElementsByTagName('div')
+
+    const ones = querySelectorAll(root, '.one')
+    console.log('depth', max)
+    console.log('total', total)
+    console.log(`leafs`, leafs)
+    console.log(Array.from(allDivs).map(e => e.innerText.trim()))
+    console.log(Array.from(divs).map(e => e.innerText.trim()))
+    console.log(`ones`, ones)
+
+    const it = order(root)
+    let result = it.next()
+
+    while (!result.done) {
+      console.log(result.value)
+      result = it.next()
+    }
+
+  }
+
+  function totalNodes(root, total = 0) {
+    if (!root) return total
+
+    for (let child of root.children) {
+      total += totalNodes(child)
+    }
+
+    return total + 1
+  }
+
+  function maxDepth(root, max = 0) {
+    if (!root) return max
+
+    for (let child of root.children) {
+      max = Math.max(maxDepth(child), max)
+    }
+
+    return max + 1
+  }
+
+  function countLeafs(root, leafs = 0) {
+    if (!root) return 0
+    if (root.children.length === 0) return 1
+
+    for (let child of root.children) {
+      leafs += countLeafs(child)
+    }
+
+    return leafs
+  }
+
+  function getElementsByTagName(root, tagName, result = []) {
+    if (!root) return result
+    if (root.tagName === tagName.toUpperCase()) {
+      result.push(root)
+    }
+    for (let child of root.children) {
+      result = result.concat(getElementsByTagName(child, tagName))
+    }
+    return result
+  }
+
+  function querySelectorAll(root, selector) {
+    const w = document.createTreeWalker(root, 1)
+    const result = []
+    do {
+      if (!w.currentNode) continue
+      if (w.currentNode.matches(selector)) result.push(w.currentNode)
+    } while (w.nextNode())
+    return result
+  }
+
+  function *order(root) {
+    if (!root) return null
+    yield root
+
+    for (let child of root.children) {
+      yield *order(child)
+    }
+  }
+
+  main()
+
+</script>
+<script src="http://localhost:35729/livereload.js?snipver=1"></script>
+</body>
+</html>
