@@ -93,32 +93,17 @@
         const dom2found = dom2tree[dom1treeIndex]
         console.log(`flatten tree search`, dom1treeIndex, dom2found)
 
-        // function findNodeIndex() {}
-        // function findNodeAtTreeIndex(root, index) {}
-        // console.log(traverse(dom2, target))
-
         // TreeWalker approach
         const walker1 = document.createTreeWalker(dom1, NodeFilter.SHOW_ELEMENT)
         const walker2 = document.createTreeWalker(dom2, NodeFilter.SHOW_ELEMENT)
+
         function findWalkers(w1, w2, target) {
-            while (w1.nextNode() && w2.nextNode()) {
-                if (w1.currentNode === target) {
-                    return w2.currentNode
-                }
-            }
+            do { if (w1.currentNode === target) return w2.currentNode }
+            while (w1.nextNode() && w2.nextNode())
         }
         const found = findWalkers(walker1, walker2, target)
         console.log(`walker found`, found)
-
-        // while (walker2.nextNode()) {
-        //     if (position === 0) {
-        //         console.log('tree walker found', walker2.currentNode)
-        //         break
-        //     }
-        //     position--
-        // }
     </script>
-    <script src="http://localhost:35729/livereload.js?snipver=1"></script>
 </body>
 
 </html>
